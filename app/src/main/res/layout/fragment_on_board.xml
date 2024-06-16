@@ -23,9 +23,7 @@
         app:tabIndicator="@null"
         app:tabIndicatorColor="@color/light_orange"
         app:tabPaddingEnd="6dp"
-        app:tabPaddingStart="6dp"
-        app:tabSelectedTextColor="@color/white"
-        app:tabTextColor="@color/grey" />
+        app:tabPaddingStart="6dp" />
 
 
     <TextView
