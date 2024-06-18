@@ -5,4 +5,7 @@
     <color name="black_bg">#0e0c0c</color>
     <color name="light_orange">#D88B02</color>
     <color name="grey">#8E8B8B</color>
+    <color name="white_text">#B1B1B1</color>
+    <color name="grey_bg">#191818</color>
+    <color name="grey_hint_text">#505050</color>
 </resources>
