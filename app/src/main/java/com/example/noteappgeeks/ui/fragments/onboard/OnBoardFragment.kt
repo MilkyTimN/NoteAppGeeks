@@ -5,10 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.example.noteappgeeks.R
 import com.example.noteappgeeks.databinding.FragmentOnBoardBinding
 import com.example.noteappgeeks.ui.adapters.OnBoardViewPagerAdapter
+import com.example.noteappgeeks.utils.SharedPreference
 import com.google.android.material.tabs.TabLayoutMediator
 
 class OnBoardFragment : Fragment() {
@@ -29,7 +31,6 @@ class OnBoardFragment : Fragment() {
         init()
         setUpListener()
     }
-
 
     private fun init() {
         binding.viewpager2.adapter = OnBoardViewPagerAdapter(this)
@@ -54,8 +55,15 @@ class OnBoardFragment : Fragment() {
                 }
             }
         })
-    }
 
+        binding.tvStart.setOnClickListener {
+            val sharedPreference = SharedPreference()
+            sharedPreference.unit(requireContext())
+
+            sharedPreference.isBoard = true
+            findNavController().navigate(R.id.noteFragment)
+        }
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
