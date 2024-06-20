@@ -55,7 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/grey"
-            android:textSize="6sp"
+            android:textSize="10sp"
             tools:text="05.05.21" />
 
         <TextView
@@ -63,7 +63,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/grey"
-            android:textSize="6sp"
+            android:textSize="10sp"
             tools:text="12:45" />
     </LinearLayout>
 
