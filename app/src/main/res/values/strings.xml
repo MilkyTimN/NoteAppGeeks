@@ -6,4 +6,6 @@
     <string name="label_start">Начать работу</string>
     <string name="label_note">Заметки</string>
     <string name="hint_search">Поиск заметок</string>
+    <string name="todo">Нужно сделать:</string>
+    <string name="label_ready">Готово</string>
 </resources>
