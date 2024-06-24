@@ -21,7 +21,7 @@ class NoteDetailFragment : Fragment() {
     private var _binding: FragmentNoteDetailBinding? = null
     private val binding get() = _binding!!
     private var noteColorEnum: NoteColorEnum = NoteColorEnum.BLACK
-    private val args: NoteDetailFragmentArgs by navArgs()
+    private var noteId: Int = -1
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,19 +33,41 @@ class NoteDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        val itemId = args.noteId
+        updateNote()
         setupListeners()
         show()
-//        getData(itemId)
+    }
+
+    private fun updateNote() {
+        arguments?.let {
+            noteId = it.getInt("noteId", -1)
+        }
+        if (noteId != -1) {
+            val argsNotes = App.appDatabase?.noteDao()?.getNoteModel(noteId)
+            argsNotes?.let { model ->
+                binding.etTitle.setText(model.title)
+                binding.etDescription.setText(model.description)
+            }
+        }
     }
 
     private fun setupListeners() {
         binding.tvReady.setOnClickListener {
             val title = binding.etTitle.text.toString()
             val description = binding.etDescription.text.toString()
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                App().getInstance()?.noteDao()
-                    ?.insertNote(NoteModel(title, description, noteColorEnum, LocalDateTime.now()))
+
+            if (noteId != -1) {
+                val updatedNote = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    NoteModel(title, description, noteColorEnum, LocalDateTime.now())
+                } else {
+                    TODO("VERSION.SDK_INT < O")
+                }
+                updatedNote.id = noteId
+                App.appDatabase?.noteDao()?.updateNoteModel(updatedNote)
+            } else{
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    App().getInstance()?.noteDao()?.insertNote(NoteModel(title, description, noteColorEnum, LocalDateTime.now()))
+                }
             }
             findNavController().navigateUp()
         }
@@ -71,11 +93,6 @@ class NoteDetailFragment : Fragment() {
             noteColorEnum = NoteColorEnum.RED
         }
     }
-
-//    private fun getData(itemId: Int) {
-//        val note: NoteModel? = App().getInstance()?.noteDao()?.getNoteModel(itemId)
-//        binding.etTitle.text = note?.title
-//    }
 
     private fun show() {
         binding.etTitle.addTextChangedListener(object :TextWatcher {

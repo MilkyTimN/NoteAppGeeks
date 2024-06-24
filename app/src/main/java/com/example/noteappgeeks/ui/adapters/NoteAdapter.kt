@@ -13,11 +13,12 @@ import com.example.noteappgeeks.R
 import com.example.noteappgeeks.data.models.NoteModel
 import com.example.noteappgeeks.data.models.enums.NoteColorEnum
 import com.example.noteappgeeks.databinding.ItemNoteBinding
+import com.example.noteappgeeks.interfaces.Clickable
 import com.example.noteappgeeks.ui.fragments.note.NoteFragment
 import com.example.noteappgeeks.ui.fragments.note.NoteFragmentDirections
 import java.time.format.DateTimeFormatter
 
-class NoteAdapter : ListAdapter<NoteModel, NoteAdapter.ViewHolder>(DiffCallback()) {
+class NoteAdapter(private val clickable: Clickable) : ListAdapter<NoteModel, NoteAdapter.ViewHolder>(DiffCallback()) {
 
     inner class ViewHolder(val binding: ItemNoteBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -49,6 +50,14 @@ class NoteAdapter : ListAdapter<NoteModel, NoteAdapter.ViewHolder>(DiffCallback(
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(getItem(position))
+        holder.itemView.setOnLongClickListener{
+            clickable.onLongClick(getItem(position))
+            true
+        }
+
+        holder.itemView.setOnClickListener {
+            clickable.onClick(getItem(position))
+        }
 //        holder.binding.root.setOnClickListener {
 //            val action = NoteFragmentDirections.actionNoteFragmentToNoteDetailFragment(getItem(position).id)
 //            it.findNavController().navigate(action)
