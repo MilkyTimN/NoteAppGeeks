@@ -15,7 +15,10 @@ class SharedPreference {
         set(value) = sharedPreference.edit().putString("title", value)!!.apply()
 
     var isBoard: Boolean
-        get() = sharedPreference.getBoolean("title", false)
-        set(value) = sharedPreference.edit().putBoolean("title", value)!!.apply()
+        get() = sharedPreference.getBoolean("isBoard", false)
+        set(value) = sharedPreference.edit().putBoolean("isBoard", value)!!.apply()
 
+    var isRVLinear: Boolean
+        get() = sharedPreference.getBoolean("rvLinear", true)
+        set(value) = sharedPreference.edit().putBoolean("rvLinear", value)!!.apply()
 }
