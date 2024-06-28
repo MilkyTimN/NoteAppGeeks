@@ -61,7 +61,7 @@ class OnBoardFragment : Fragment() {
             sharedPreference.unit(requireContext())
 
             sharedPreference.isBoard = true
-            findNavController().navigate(R.id.noteFragment)
+            findNavController().navigate(R.id.signUpFragment)
         }
     }
 

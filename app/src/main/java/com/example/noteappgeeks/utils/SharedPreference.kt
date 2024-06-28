@@ -21,4 +21,8 @@ class SharedPreference {
     var isRVLinear: Boolean
         get() = sharedPreference.getBoolean("rvLinear", true)
         set(value) = sharedPreference.edit().putBoolean("rvLinear", value)!!.apply()
+
+    var isSignedIn : Boolean
+        get() = sharedPreference.getBoolean("isSignedIn", false)
+        set(value) = sharedPreference.edit().putBoolean("isSignedIn", value)!!.apply()
 }

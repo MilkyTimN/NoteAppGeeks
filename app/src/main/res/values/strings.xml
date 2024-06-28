@@ -8,4 +8,7 @@
     <string name="hint_search">Поиск заметок</string>
     <string name="todo">Нужно сделать:</string>
     <string name="label_ready">Готово</string>
+    <string name="enter_with_google">Войти через Google</string>
+    <string name="default_web_client_id">782216344219-ejje74ofvcrt7fmq28ko4d9g2biqqakq.apps.googleusercontent.com</string>
+    <string name="label_register_with_google">Регистрация по Google аккаунту</string>
 </resources>
