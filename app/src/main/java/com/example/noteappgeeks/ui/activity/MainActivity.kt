@@ -24,16 +24,24 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.navController
 
         checkOnboarding()
+        checkSignedIn()
     }
 
     private fun checkOnboarding() {
         val sharedPreference = SharedPreference()
         sharedPreference.unit(this)
-
         val onBoardingShown = sharedPreference.isBoard
-
         if (!onBoardingShown) {
             navController.navigate(R.id.onBoardFragment)
+        }
+    }
+
+    private fun checkSignedIn() {
+        val sharedPreference = SharedPreference()
+        sharedPreference.unit(this)
+        val onBoardingShown = sharedPreference.isSignedIn
+        if (onBoardingShown) {
+            navController.navigate(R.id.noteFragment)
         }
     }
 
